@@ -220,6 +220,8 @@ public class HurlStack implements HttpStack {
                 connection.setRequestMethod("GET");
                 break;
             case Method.DELETE:
+                connection.setRequestMethod("POST");
+                addBodyIfExists(connection, request);
                 connection.setRequestMethod("DELETE");
                 break;
             case Method.POST:

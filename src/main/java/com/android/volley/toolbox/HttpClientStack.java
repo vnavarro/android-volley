@@ -113,7 +113,10 @@ public class HttpClientStack implements HttpStack {
             case Method.GET:
                 return new HttpGet(request.getUrl());
             case Method.DELETE:
-                return new HttpDelete(request.getUrl());
+                com.android.volley.toolbox.HttpDelete deleteRequest =  new com.android.volley.toolbox.HttpDelete(request.getUrl());
+                deleteRequest.addHeader(HEADER_CONTENT_TYPE, request.getBodyContentType());
+                setEntityIfNonEmptyBody(deleteRequest, request);
+                return deleteRequest;
             case Method.POST: {
                 HttpPost postRequest = new HttpPost(request.getUrl());
                 postRequest.addHeader(HEADER_CONTENT_TYPE, request.getBodyContentType());
